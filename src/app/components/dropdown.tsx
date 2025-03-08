@@ -4,7 +4,7 @@ export default function Dropdown({ title, children }: { title: string, children?
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="w-full flex flex-col gap-2 items-start p-2 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+    <div className="w-full flex flex-col gap-2 items-start p-2 bg-white rounded-lg shadow-lg">
       <button className="w-full text-start text-lg text-slate-500 bg-slate-100 p-2 rounded-lg hover:cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
         {title}
       </button>

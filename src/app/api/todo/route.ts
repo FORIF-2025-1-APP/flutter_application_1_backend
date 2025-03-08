@@ -47,7 +47,7 @@ export const DELETE = withAuth(async (req: NextRequest, context: any) => {
       return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
     }
     await deleteTodo(id);
-    return NextResponse.json({ message: "Todo deleted successfully" });
+    return NextResponse.json(todo);
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to delete todo" },
@@ -61,8 +61,8 @@ export const PATCH = withAuth(async (req: NextRequest, context: any) => {
   const { user } = context;
 
   try {
-    await toggleCompleted(id, completed);
-    return NextResponse.json({ message: "Todo updated successfully" });
+    const todo = await toggleCompleted(id, completed);
+    return NextResponse.json(todo);
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to update todo" },

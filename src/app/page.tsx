@@ -1,16 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
-import Dropdown from "./components/dropdown";
+import Dropdown from "@components/dropdown";
 import Description from "@components/description";
 import Caution from "@components/caution";
+
 export default function Home() {
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessage(
+        "이 페이지를 무려 1시간이나 보고 계셨군요! 앞으로도 열심히 해주세요!"
+      );
+    }, 60 * 60 * 1000); // 1 hour in milliseconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="w-full flex flex-col items-center text-4xl font-bold">
-      <div className="w-full md:w-[1024px] flex flex-col items-center gap-4">
+      <div className="w-full lg:w-[1024px] p-4 flex flex-col items-center gap-4">
         <div className="w-full text-center text-2xl font-bold">
           Forif Flutter Project Sample API
+        </div>
+        <div className="w-full text-center text-lg font-bold">
+          {message}
         </div>
         <Caution />
         <Dropdown title="/api">
@@ -29,7 +46,10 @@ export default function Home() {
               <Description
                 method="POST"
                 headers="None"
-                body="None"
+                body={{
+                  username: "string",
+                  password: "string",
+                }}
                 response={[
                   {
                     code: 200,
@@ -50,7 +70,10 @@ export default function Home() {
               <Description
                 method="POST"
                 headers="None"
-                body="None"
+                body={{
+                  username: "string",
+                  password: "string",
+                }}
                 response={[
                   {
                     code: 200,
@@ -90,17 +113,15 @@ export default function Home() {
                   {
                     code: 200,
                     data: {
-                      message: "Profile",
-                      user: {
-                        id: "string",
-                        username: "string",
-                        password: "string",
-                        createdAt: "string",
-                        updatedAt: "string",
-                      },
+                      id: "string",
+                      username: "string",
+                      createdAt: "string",
+                      updatedAt: "string",
                     },
                   },
                   { code: 401, data: { error: "string" } },
+                  { code: 404, data: { error: "string" } },
+                  { code: 500, data: { error: "string" } },
                 ]}
               />
             </Dropdown>
@@ -162,7 +183,12 @@ export default function Home() {
                 {
                   code: 200,
                   data: {
-                    message: "string",
+                    id: "string",
+                    title: "string",
+                    completed: "boolean",
+                    createdAt: "string",
+                    updatedAt: "string",
+                    userId: "string",
                   },
                 },
                 { code: 401, data: { error: "string" } },
@@ -179,7 +205,12 @@ export default function Home() {
                 {
                   code: 200,
                   data: {
-                    message: "string",
+                    id: "string",
+                    title: "string",
+                    completed: "boolean",
+                    createdAt: "string",
+                    updatedAt: "string",
+                    userId: "string",
                   },
                 },
                 { code: 401, data: { error: "string" } },
