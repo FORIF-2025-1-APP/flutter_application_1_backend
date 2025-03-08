@@ -19,7 +19,7 @@ export const withAuth = (handler: Handler) => {
         return NextResponse.json({ error: "Invalid token" }, { status: 401 });
       }
 
-      // context.user = decoded;
+      context.user = decoded;
 
       return handler(req, context);
     } catch (error) {
