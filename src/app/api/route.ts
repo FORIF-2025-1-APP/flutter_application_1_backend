@@ -1,8 +1,5 @@
-import { NextResponse } from 'next/server';
-import { withAuth } from '@middleware/auth';
+import { NextResponse } from "next/server";
 
-async function secretGET() {
+export async function GET() {
   return NextResponse.json({ message: "Forif Flutter Project Sample API" });
 }
-
-export const GET = withAuth(secretGET);
