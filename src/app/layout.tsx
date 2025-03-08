@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "API Testing Interface",
+  title: "Forif Study API",
   description: "Test your API endpoints",
 };
 
@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ToastContainer />
-        <main className="mx-auto mx-10 py-8">
+        <main className="mx-auto py-8">
           {children}
         </main>
       </body>
