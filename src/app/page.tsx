@@ -23,6 +23,7 @@ export default function Home() {
               { code: 500, data: { error: "string" } },
             ]}
           />
+
           <Dropdown title="/auth">
             <Dropdown title="/login">
               <Description
@@ -66,6 +67,7 @@ export default function Home() {
               />
             </Dropdown>
           </Dropdown>
+
           <Dropdown title="/protected">
             <Description
               method="GET"
@@ -77,6 +79,7 @@ export default function Home() {
               ]}
             />
           </Dropdown>
+
           <Dropdown title="/user">
             <Dropdown title="/profile">
               <Description
@@ -101,6 +104,88 @@ export default function Home() {
                 ]}
               />
             </Dropdown>
+          </Dropdown>
+
+          <Dropdown title="/todo">
+            <Description
+              method="GET"
+              headers="Authorization: Bearer Token"
+              body="None"
+              response={[
+                {
+                  code: 200,
+                  data: [
+                    {
+                      id: "string",
+                      title: "string",
+                      completed: "boolean",
+                      createdAt: "string",
+                      updatedAt: "string",
+                      userId: "string",
+                    },
+                  ],
+                },
+                { code: 401, data: { error: "string" } },
+                { code: 500, data: { error: "string" } },
+              ]}
+            />
+            <Description
+              method="POST"
+              headers="Authorization: Bearer Token"
+              body={{
+                title: "string",
+              }}
+              response={[
+                {
+                  code: 200,
+                  data: {
+                    id: "string",
+                    title: "string",
+                    completed: "boolean",
+                    createdAt: "string",
+                    updatedAt: "string",
+                    userId: "string",
+                  },
+                },
+                { code: 401, data: { error: "string" } },
+                { code: 500, data: { error: "string" } },
+              ]}
+            />
+            <Description
+              method="PATCH"
+              headers="Authorization: Bearer Token"
+              body={{
+                id: "string",
+                completed: "boolean",
+              }}
+              response={[
+                {
+                  code: 200,
+                  data: {
+                    message: "string",
+                  },
+                },
+                { code: 401, data: { error: "string" } },
+                { code: 500, data: { error: "string" } },
+              ]}
+            />
+            <Description
+              method="DELETE"
+              headers="Authorization: Bearer Token"
+              body={{
+                id: "string",
+              }}
+              response={[
+                {
+                  code: 200,
+                  data: {
+                    message: "string",
+                  },
+                },
+                { code: 401, data: { error: "string" } },
+                { code: 500, data: { error: "string" } },
+              ]}
+            />
           </Dropdown>
         </Dropdown>
       </div>

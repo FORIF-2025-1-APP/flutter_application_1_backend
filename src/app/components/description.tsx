@@ -8,14 +8,21 @@ export default function Description({
 }: {
   method: string;
   headers: string;
-  body: string;
+  body: string | object;
   response: { code: number; data: any }[];
 }) {
   return (
     <div className="w-full p-4 flex flex-col gap-4">
-      <TextBlock title={"Method"} text={method} className="text-lg font-bold text-slate-700" />
+      <TextBlock
+        title={"Method"}
+        text={method}
+        className="text-lg font-bold text-slate-700"
+      />
       <TextBlock title={"Headers"} text={headers} />
-      <TextBlock title={"Body"} text={body} />
+      <TextBlock
+        title={"Body"}
+        text={typeof body === "string" ? body : JSON.stringify(body, null, 2)}
+      />
       <TextBlock title={"Response"} text={""} />
       {response.map((res) => (
         <Response key={res.code.toString()} code={res.code} data={res.data} />
@@ -36,7 +43,13 @@ function TextBlock({
   return (
     <div className="flex flex-col">
       <div className="text-sm text-black">{title}</div>
-      <div className={`${className || "text-sm text-slate-700"}`}>{text}</div>
+      <div
+        className={`${
+          className || "text-sm text-slate-700 whitespace-pre-wrap"
+        }`}
+      >
+        {text}
+      </div>
     </div>
   );
 }

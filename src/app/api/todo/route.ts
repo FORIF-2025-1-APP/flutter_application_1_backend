@@ -1,6 +1,23 @@
 import { withAuth } from "@middleware/auth";
 import { NextRequest, NextResponse } from "next/server";
-import { createTodo, getTodos, deleteTodo, toggleCompleted, getTodoById } from "@lib/todo";
+import {
+  createTodo,
+  getTodos,
+  deleteTodo,
+  toggleCompleted,
+  getTodoById,
+} from "@lib/todo";
+
+export const GET = withAuth(async (req: NextRequest, context: any) => {
+  const { user } = context;
+
+  try {
+    const todos = await getTodos(user.id);
+    return NextResponse.json(todos);
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to get todos" }, { status: 500 });
+  }
+});
 
 export const POST = withAuth(async (req: NextRequest, context: any) => {
   const { title } = await req.json();
@@ -14,17 +31,6 @@ export const POST = withAuth(async (req: NextRequest, context: any) => {
       { error: "Failed to create todo" },
       { status: 500 }
     );
-  }
-});
-
-export const GET = withAuth(async (req: NextRequest, context: any) => {
-  const { user } = context;
-
-  try {
-    const todos = await getTodos(user.id);
-    return NextResponse.json(todos);
-  } catch (error) {
-    return NextResponse.json({ error: "Failed to get todos" }, { status: 500 });
   }
 });
 
