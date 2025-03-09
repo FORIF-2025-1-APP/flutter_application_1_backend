@@ -7,6 +7,9 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+      sans: ["Pretendard", "var(--font-sans)"],
+    },
     extend: {
       backgroundColor: {
         'gray-100': '#f3f4f6',

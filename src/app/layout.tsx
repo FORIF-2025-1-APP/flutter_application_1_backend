@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ToastContainer />
-        <main className="mx-auto py-8">
+        <main className="min-h-screen bg-fixed bg-gradient-to-br from-blue-50 via-white to-purple-50">
           {children}
         </main>
       </body>

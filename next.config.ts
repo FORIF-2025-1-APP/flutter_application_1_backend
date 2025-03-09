@@ -1,11 +1,19 @@
+import createMDX from "@next/mdx";
+import remarkGfm from "remark-gfm";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
-  experimental: {
-    serverActions: {
-      enabled: false
-    },
-  },
+  // Configure `pageExtensions` to include markdown and MDX files
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+
+  output: "standalone" as const,
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [remarkGfm],  // We only need remarkGfm for GitHub-flavored markdown
+  },
+});
+
+export default withMDX(nextConfig);
