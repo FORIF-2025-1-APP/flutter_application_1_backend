@@ -1,6 +1,8 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
 
+import { FaLink } from "react-icons/fa6";
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ children }) => (
@@ -18,8 +20,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     a: ({ href, children }) => (
       <Link
         href={href}
-        className="text-blue-600 hover:text-blue-800 underline break-all"
+        className="text-orange-600 hover:text-orange-800 break-all"
       >
+        <FaLink className="inline-block mr-1" />
         {children}
       </Link>
     ),
